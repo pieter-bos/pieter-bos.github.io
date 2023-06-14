@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>VerCors Development Book</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Techical Setup</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.1.</strong> Language</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.2.</strong> Build System</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.3.</strong> Libraries</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.3.1.</strong> ANTLR</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.3.2.</strong> Logback</div></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Common Object Language</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Nodes</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> References</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.</strong> Origins</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Checking</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.5.</strong> Pretty-Printing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> Comparing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.7.</strong> Serialization</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Resolution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Rewriting</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Dispatch</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> Generations</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Succesion</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> Blames</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Nested Rewriters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.6.</strong> Substitution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.7.</strong> RewriteHelper</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.8.</strong> RewriteBuilder</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Backend and Errors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Program Translation</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> Error Translation</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Utilites</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Caching</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Profiling and Progress</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> Importing</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">VerCors Development Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
+<p>VerCors is a tool that tries to show programs to be correct. Correct may mean that the program finishes, that it does not crash, that it never throws an exception, or returns the correct result subject to some specification.</p>
+<p>VerCors accepts programs in a variety of languages. For each language (also: <em>frontend</em>) the grammar is altered slightly, maintaining compatiblity with the source langauge grammar, so that we may add various annotations to the program. These annotations aid in verifying the program by specifying behaviour about it. This is crucial in automating the proof of the program.</p>
+<p>As a tool VerCors works by passing the program through a large number of transformations. In general each transformation reduces the number of <em>features</em> in the program. You may think about features as different kinds of statements and operators. Various concerns are maintained in each element of the transformation. The most important guarded invariant is that of error transformations. As statement \(P\) is compiled into a different statement \(Q\), we have to remember how to translate errors about statement \(Q\) back into errors about statement \(P\).</p>
+<p>An intermediate program is stored in VerCors as an <em>Abstract Syntax Tree</em> (short: AST). The internal language is also referred to as the <em>Common Object Language</em> (short: COL). Each part of the transformation is structured as a <em>Rewriter</em>, which visits each element in the AST. After visiting a node in the tree, the rewriter must specify what that node is replaced with. By default, the rewriter will recurse further into the tree, keeping the kind of node the same. For example, if we ask a default rewriter what \(p + q\) must be rewritten to, we will then ask what \(p\) and \(q\) will rewrite to. Supposing they rewrite to \(p'\) and \(q'\) respectively, the rewriter will by default restore the plus operator and return \(p' + q'\).</p>
+<p>Around the transformation chain there are several steps. Unfortunately, syntax trees do not fall out of thin air, so we must first parse our text input into a tree. In VerCors, this is largely handled by by the ANTLR parser generator. We translate parse trees into COL trees as a part of the parsing stage, but there are no surprises there: as a matter of principle there is a corresponding COL node for each parse node. Next there is resolution: the process of associating each name in the tree with a referrable node. For example, variable names 'point' to the declaration of the variable. This stage usually presupposes that the file compiles at all.</p>
+<p>After all the transformations we have a very simple program. On the other hand, proving it to be correct is no simple matter. We delegate this responsibility to Viper, a tool designed to automatically verify this dialect of program. Finally, a (hopefully empty) list of errors from Viper is translated into appropriate errors for the initial input to VerCors.</p>
+<p>This completes the intended cycle of usage for VerCors: submitting a program to VerCors leads to a list of suggested improvements, which leads to editing the program, which leads to a new submission to VerCors. We have some qualitative wishes here: errors should be clear, specific and not a false negative. It should include context where appropriate, such as an example of how the error might occur. Ideally, VerCors is performant and can quickly establish whether or not there is an error.</p>
+<p>The central goal is that we can encourage writers of critical software to prove their programs to be correct, so that their software is reliable.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
