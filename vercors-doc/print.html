@@ -257,6 +257,8 @@
 }
 </code></pre>
 <p>You may presume that the node is <code>check</code>ed before its type is queried, and may crash otherwise. The type of expressions is closely related to coercion.</p>
+<h2 id="type"><a class="header" href="#type">Type</a></h2>
+<p>The relations between types must be defined in <code>Types.leastCommonSuperType</code> and <code>CoercionUtils.getCoercion</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="coercion"><a class="header" href="#coercion">Coercion</a></h1>
 <p>Various nodes contain expressions, such as other expressions (e.g. <code>Plus</code> contains its two arguments) and non-expressions (e.g. <code>Branch</code> contains the conditions for its branches). Each expression position in the tree may induce a typing constraint on the expression in it. For example, the conditions in <code>Branch</code> have to be booleans:</p>
 <pre><code class="language-scala">case Branch(branches) =&gt; 
@@ -278,6 +280,9 @@
 <h2 id="transformations"><a class="header" href="#transformations">Transformations</a></h2>
 <p>It is occasionally useful to implement transformation along the description of a coercion. Coercions are described by the node family <code>Coercion</code>. For example, coercing a <code>seq&lt;int&gt;</code> into a <code>seq&lt;rational&gt;</code> is described by <code>CoerceMapSeq(CoerceIntRat(), TInt(), TRational())</code>. Rewriters that extend <code>CoercingRewriter</code> have access to this coercion object by overriding <code>applyCoercion</code>. </p>
 <p>One example of this behaviour is in the overloaded interpretation of <code>null</code>. In VerCors the array types are entirely separate from the class types. Thus, <code>null</code> can be coerced into either an array or a class type. In the rewriter that encodes arrays, <code>ImportArray</code>, we filter for usages of <code>null</code> for arrays by translating a <code>CoerceNullArray</code> coercion to the appropriate value for a null array.</p>
+<h2 id="safety"><a class="header" href="#safety">Safety</a></h2>
+<p>Note that very nearly all defined/permissible coercions are promoting coercions. That is, they only admit coercions when a value definitely fits into the target type of the coercion. This is defined programatically by defining <code>isPromoting</code> in <code>CoercionImpl</code>. Currently the only exception is rationals into <code>zfrac</code> into <code>frac</code>. We have not investigated yet whether it is a good idea to define more implicit coercions to represent situations like demoting a <code>uint64</code> into a <code>uint32</code> - perhaps they are better suited as explicit non-<code>ApplyCoercion</code> nodes at an early point. Failures in coercion are reported to the blame in <code>Program</code>, mostly because we have no other good place to put it.</p>
+<p>The other safety concern related to promoting coercions is that sets only map over promoting coercions due to the fact that the default coercion is defined as \(x \in \textsf{input} \leftrightarrow \textsf{coerce}(x) \in \textsf{output}\). Alternative encodings we investigated are cumbersome because they add additional necessary proof steps.</p>
 
                     </main>
 
