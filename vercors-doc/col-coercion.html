@@ -182,6 +182,13 @@
 </code></pre>
 <p>Here we coerce each <code>cond : Expr[G]</code> into a boolean, and do nothing with <code>effect</code>. For <code>Plus</code> we pick the first of two transformations that succeeds: either both <code>left</code> and <code>right</code> can be coerced with <code>int</code>, or both can be coerced with <code>rat</code>.</p>
 <p>Coercions serve two purposes: they check that the AST is well-typed, and can be used in <code>Rewriter</code>s to enact transformations on the AST.</p>
+<h2 id="type-checking"><a class="header" href="#type-checking">Type checking</a></h2>
+<p>The coercions in <code>CoercingRewriter</code> are run for every node during a <code>check</code> in the implementation of <code>DeclarationImpl</code> and <code>NodeFamilyImpl</code> (which together span all nodes). They use a special descendant of <code>CoercingRewriter</code> called <code>NopCoercingRewriter</code> that applies no transformtions along coercions.</p>
+<p>All nodes that contain expressions should have their coercions defined in <code>CoercingRewriter</code>. If the expression should be in a simple type (class), you can use <code>coerce(expression : Expr[Pre], type : Type[Pre])</code>. Shorthands for several common types are defined, such as <code>rat</code>, <code>bool</code> and <code>int</code>.</p>
+<p>If your node can be interpreted in multiple ways, determined by the type of its arguments, you can use the <code>firstOk</code> helper to select the first set of coercions that suceed on the arguments. Only if all alternatives fail an error is raised.</p>
+<h2 id="transformations"><a class="header" href="#transformations">Transformations</a></h2>
+<p>It is occasionally useful to implement transformation along the description of a coercion. Coercions are described by the node family <code>Coercion</code>. For example, coercing a <code>seq&lt;int&gt;</code> into a <code>seq&lt;rational&gt;</code> is described by <code>CoerceMapSeq(CoerceIntRat(), TInt(), TRational())</code>. Rewriters that extend <code>CoercingRewriter</code> have access to this coercion object by overriding <code>applyCoercion</code>. </p>
+<p>One example of this behaviour is in the overloaded interpretation of <code>null</code>. In VerCors the array types are entirely separate from the class types. Thus, <code>null</code> can be coerced into either an array or a class type. In the rewriter that encodes arrays, <code>ImportArray</code>, we filter for usages of <code>null</code> for arrays by translating a <code>CoerceNullArray</code> coercion to the appropriate value for a null array.</p>
 
                     </main>
 
