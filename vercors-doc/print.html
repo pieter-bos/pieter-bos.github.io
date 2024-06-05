@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>VerCors Development Book</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -34,7 +34,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -64,31 +64,38 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">1.</strong> Techical Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setup-workflow.html"><strong aria-hidden="true">1.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="setup-language.html"><strong aria-hidden="true">1.2.</strong> Language</a></li><li class="chapter-item expanded "><a href="setup-build-system.html"><strong aria-hidden="true">1.3.</strong> Build System</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> Libraries</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.1.</strong> ANTLR</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.2.</strong> Logback</div></li></ol></li></ol></li><li class="chapter-item expanded "><a href="col.html"><strong aria-hidden="true">2.</strong> Common Object Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="col-nodes.html"><strong aria-hidden="true">2.1.</strong> Nodes</a></li><li class="chapter-item expanded "><a href="col-ref.html"><strong aria-hidden="true">2.2.</strong> References</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.</strong> Origins</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Checking</div></li><li class="chapter-item expanded "><a href="col-coercion.html"><strong aria-hidden="true">2.5.</strong> Coercion</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> Pretty-Printing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.7.</strong> Comparing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.8.</strong> Serialization</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Resolution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Rewriting</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Dispatch</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> Generations</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Succesion</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> Blames</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Nested Rewriters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.6.</strong> Substitution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.7.</strong> RewriteHelper</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.8.</strong> RewriteBuilder</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Backend and Errors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Program Translation</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> Error Translation</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Utilites</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Caching</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Profiling and Progress</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> Importing</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">1.</strong> Techical Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setup-workflow.html"><strong aria-hidden="true">1.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="setup-language.html"><strong aria-hidden="true">1.2.</strong> Language</a></li><li class="chapter-item expanded "><a href="setup-build-system.html"><strong aria-hidden="true">1.3.</strong> Build System</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> Libraries</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.1.</strong> ANTLR</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.2.</strong> Logback</div></li></ol></li></ol></li><li class="chapter-item expanded "><a href="col.html"><strong aria-hidden="true">2.</strong> Common Object Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="col-nodes.html"><strong aria-hidden="true">2.1.</strong> Nodes</a></li><li class="chapter-item expanded "><a href="col-ref.html"><strong aria-hidden="true">2.2.</strong> References</a></li><li class="chapter-item expanded "><a href="col-origin.html"><strong aria-hidden="true">2.3.</strong> Origins</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Checking</div></li><li class="chapter-item expanded "><a href="col-coercion.html"><strong aria-hidden="true">2.5.</strong> Coercion</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> Pretty-Printing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.7.</strong> Comparing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.8.</strong> Serialization</div></li></ol></li><li class="chapter-item expanded "><a href="resolution.html"><strong aria-hidden="true">3.</strong> Resolution</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Rewriting</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Dispatch</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> Generations</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Succesion</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> Blames</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Nested Rewriters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.6.</strong> Substitution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.7.</strong> RewriteHelper</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.8.</strong> RewriteBuilder</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Backend and Errors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Program Translation</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> Error Translation</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Utilites</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Caching</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Profiling and Progress</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> Importing</div></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -119,9 +126,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -186,7 +193,7 @@
 <li>If you have a bug or clearly delineated feature request, it should exist as an issue on our tracker on GitHub: <a href="https://github.com/utwente-fmt/vercors/issues">https://github.com/utwente-fmt/vercors/issues</a>. The goal is to have zero issues: that should be achievable, since it should be clear what to do from the issue.</li>
 <li>If you have a more vague feature request, or a question, or you're not sure if something is a bug, it should be a discussion: <a href="https://github.com/utwente-fmt/vercors/discussions">https://github.com/utwente-fmt/vercors/discussions</a>.</li>
 <li>If you're working on VerCors code longer term, we prefer that you do so in a <em>branch</em> in the main repository, rather than working in a fork. Please ask for push access when starting out.</li>
-<li>If you're working on a single issue, please assign yourself the issue. </li>
+<li>If you're working on a single issue, please assign yourself the issue.</li>
 <li>We use feature branches and pull requests, so once you're done please file a pull request. Contiuous integration will run all examples on your changes automatically, so it's wise to check if it succeeded.</li>
 <li>We do not have a linting policy at this time. We ask that try to follow local conventions of files you're editing and do not reformat whole files.</li>
 </ul>
@@ -202,12 +209,12 @@
 </ul>
 <p>On the surface it seems Kotlin has significant feature overlap with Scala, but some of the above points are not available and are important. We may revisit that stance in the future.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="build-system"><a class="header" href="#build-system">Build System</a></h1>
-<p>The default build system for Scala, and hybrid Scala/Java project, is SBT. However, our current build system is <a href="https://mill-build.com/">mill</a>. For a general overview of why we don't use SBT anymore, see <a href="http://www.lihaoyi.com/post/SowhatswrongwithSBT.html">here</a>. </p>
+<p>The default build system for Scala, and hybrid Scala/Java project, is SBT. However, our current build system is <a href="https://mill-build.com/">mill</a>. For a general overview of why we don't use SBT anymore, see <a href="http://www.lihaoyi.com/post/SowhatswrongwithSBT.html">here</a>.</p>
 <p>For us specifically we considered these things:</p>
 <ul>
 <li>For meta-build alterations in ColHelper, it was annoying to remember that you need to reload.</li>
 <li>You needed to alter the IntelliJ settings immediately, otherwise the project does not build by default.</li>
-<li>The run script broke for almost every user, because we use a custom classpath caching solution, because sbt &quot;run example.pvl&quot; starts up way too slow (~7 seconds when vercors is already entirely compiled).</li>
+<li>The run script broke for almost every user, because we use a custom classpath caching solution, because sbt "run example.pvl" starts up way too slow (~7 seconds when vercors is already entirely compiled).</li>
 <li>Most people had encountered a situation where the project just breaks, and you need to re-import everything.</li>
 <li>Anything custom was hard to implement, because we didn't understand enough about how sbt works.</li>
 </ul>
@@ -235,9 +242,9 @@
 <p>COL programs are stored in a tree-like immutable data structure. All nodes are defined in <code>src/col/vct/col/ast/Node.scala</code>. Other than some primitive types and collection types like <code>Int</code>, <code>String</code>, <code>Seq[_]</code> and tuples <code>(_, _)</code>, all types in the tree are descendants of <code>Node</code>.</p>
 <p>Nodes are split into two kinds:</p>
 <ul>
-<li><strong>Descendants of <code>NodeFamily</code></strong>. These are regular nodes, like expressions and statements. 
+<li><strong>Descendants of <code>NodeFamily</code></strong>. These are regular nodes, like expressions and statements.
 <ul>
-<li>They have structural equality, meaning comparing them constitutes comparing their fields. </li>
+<li>They have structural equality, meaning comparing them constitutes comparing their fields.</li>
 <li>It makes sense to say that each family of nodes should rewrite to itself: one <code>Statement</code> should always be rewritten to another <code>Statement</code>.</li>
 </ul>
 </li>
@@ -299,9 +306,22 @@ void q() {
 <li><code>goto 1</code></li>
 </ol>
 <p>The way we resolve this by making references lazy in general. We can still refer directly to declaration that we know of in context, such as temporary variables, by wrapping them in <code>DirectRef</code>. If not, we supply the computation that will resolve the reference to <code>LazyRef</code>. Importantly, this computation need not be valid immediately, it must be correct only after the <code>Rewriter</code>.</p>
-<p>By default, we store one-to-one succesors in a map. References then by default construct a <code>LazyRef</code> that looks up the successor in this map.</p>
-<h2 id="implementation-etc"><a class="header" href="#implementation-etc">Implementation etc.</a></h2>
-<p>TODO</p>
+<p>By default, we store one-to-one succesors in a map. References then by default construct a <code>LazyRef</code> that looks up the successor in this map. The actual mechanics of this are explained further in <a href="resolution.html">Resolution</a> and <a href="rewriting-succession.html">Succession</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="origins"><a class="header" href="#origins">Origins</a></h1>
+<p>The origin is a mandatory field in every node, and is the facility by which we store any and all metadata about the node. It arranges the preferred naming scheme of nodes that should have a name, it describes the context in which the node was created, and can remember what text range(s) in the input participated in making the node.</p>
+<p>As it is metadata that is nominally not semantically relevant, it does not participate in the structural equality of nodes.</p>
+<h1 id="naming"><a class="header" href="#naming">Naming</a></h1>
+<p>The name of a node is not relevant to rewriting logic, so it is included in the metadata. For simple source input, the preferred name is just the same as it is in the source. For generated nodes we can use <code>PreferredName</code> and <code>NamePrefix</code> to indicate the preferred name, or its shorthand <code>Origin.where(name = ..., prefix = ...)</code>. We emphasize once more that the name has no semantic relevance: VerCors would be equally sound if all preferred names are <code>x</code>.</p>
+<p>The preferred name is currently used in two places:</p>
+<ul>
+<li><code>vct.col.print.Namer</code> for debug output and some source transformation outputs (e.g. VeyMont);</li>
+<li><code>viper.api.transform.ColToSilver</code> for serialization into the Viper language.</li>
+</ul>
+<h1 id="context"><a class="header" href="#context">Context</a></h1>
+<p>For debugging purposes we can add context to an origin. This is typically not necessary for reporting verification failures, as they are reported very close to the input origin. Nevertheless it is useful to know why a node exists, so we mostly add ad-hoc instances of <code>LabelContext</code>, or its shorthand <code>Origin.where(context = ...)</code>.</p>
+<h1 id="source-context"><a class="header" href="#source-context">Source Context</a></h1>
+<p>Most origins contain at least one pair of <code>ReadableOrigin</code> and <code>PositionRange</code>. Often it is tempting to "just ask" what file position a node comes from, but it is not very often so straightforward to explain away the reason a node exists as such. Nevertheless it is useful to know what source code primarily contributed to the node.</p>
+<p><code>Origin</code> extends <code>HasContext</code>, which defines <code>messageInContext</code> to render a message in the context it describes. This will usually contain the file name, as well as the fragment in the file that the origin refers to. There is also <code>Origin.shortPosition</code>, which will attempt to locate an arbitrary file position in the <code>Origin</code> - this is generally not advisable to use outside debugging.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="coercion"><a class="header" href="#coercion">Coercion</a></h1>
 <p>Various nodes contain expressions, such as other expressions (e.g. <code>Plus</code> contains its two arguments) and non-expressions (e.g. <code>Branch</code> contains the conditions for its branches). Each expression position in the tree may induce a typing constraint on the expression in it. For example, the conditions in <code>Branch</code> have to be booleans:</p>
 <pre><code class="language-scala">case Branch(branches) =&gt; 
@@ -309,7 +329,7 @@ void q() {
 </code></pre>
 <p>and the arguments of <code>Plus</code> may be integers or rationals:</p>
 <pre><code class="language-scala">case Plus(left, right) =&gt;
-	firstOk(e, s&quot;Expected both operands to be numeric, but got ${left.t} and ${right.t}.&quot;,
+	firstOk(e, s"Expected both operands to be numeric, but got ${left.t} and ${right.t}.",
 		Plus(int(left), int(right)),
 		Plus(rat(left), rat(right)),
 	)
@@ -321,11 +341,49 @@ void q() {
 <p>All nodes that contain expressions should have their coercions defined in <code>CoercingRewriter</code>. If the expression should be in a simple type (class), you can use <code>coerce(expression : Expr[Pre], type : Type[Pre])</code>. Shorthands for several common types are defined, such as <code>rat</code>, <code>bool</code> and <code>int</code>.</p>
 <p>If your node can be interpreted in multiple ways, determined by the type of its arguments, you can use the <code>firstOk</code> helper to select the first set of coercions that suceed on the arguments. Only if all alternatives fail an error is raised.</p>
 <h2 id="transformations"><a class="header" href="#transformations">Transformations</a></h2>
-<p>It is occasionally useful to implement transformation along the description of a coercion. Coercions are described by the node family <code>Coercion</code>. For example, coercing a <code>seq&lt;int&gt;</code> into a <code>seq&lt;rational&gt;</code> is described by <code>CoerceMapSeq(CoerceIntRat(), TInt(), TRational())</code>. Rewriters that extend <code>CoercingRewriter</code> have access to this coercion object by overriding <code>applyCoercion</code>. </p>
+<p>It is occasionally useful to implement transformation along the description of a coercion. Coercions are described by the node family <code>Coercion</code>. For example, coercing a <code>seq&lt;int&gt;</code> into a <code>seq&lt;rational&gt;</code> is described by <code>CoerceMapSeq(CoerceIntRat(), TInt(), TRational())</code>. Rewriters that extend <code>CoercingRewriter</code> have access to this coercion object by overriding <code>applyCoercion</code>.</p>
 <p>One example of this behaviour is in the overloaded interpretation of <code>null</code>. In VerCors the array types are entirely separate from the class types. Thus, <code>null</code> can be coerced into either an array or a class type. In the rewriter that encodes arrays, <code>ImportArray</code>, we filter for usages of <code>null</code> for arrays by translating a <code>CoerceNullArray</code> coercion to the appropriate value for a null array.</p>
 <h2 id="safety"><a class="header" href="#safety">Safety</a></h2>
 <p>Note that very nearly all defined/permissible coercions are promoting coercions. That is, they only admit coercions when a value definitely fits into the target type of the coercion. This is defined programatically by defining <code>isPromoting</code> in <code>CoercionImpl</code>. Currently the only exception is rationals into <code>zfrac</code> into <code>frac</code>. We have not investigated yet whether it is a good idea to define more implicit coercions to represent situations like demoting a <code>uint64</code> into a <code>uint32</code> - perhaps they are better suited as explicit non-<code>ApplyCoercion</code> nodes at an early point. Failures in coercion are reported to the blame in <code>Program</code>, mostly because we have no other good place to put it.</p>
 <p>The other safety concern related to promoting coercions is that sets only map over promoting coercions due to the fact that the default coercion is defined as \(x \in \textsf{input} \leftrightarrow \textsf{coerce}(x) \in \textsf{output}\). Alternative encodings we investigated are cumbersome because they add additional necessary proof steps.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="resolution"><a class="header" href="#resolution">Resolution</a></h1>
+<p>Resolution is the process of assigning a meaning to a text name. Resolution occurs in two stages:</p>
+<ul>
+<li><code>vct.col.resolve.ResolveTypes</code>: Resolves the meaning of types, and loads any library types that are mentioned but not in the input. Declaration with a type can be important in resoving other references, such as field dereferences.</li>
+<li><code>vct.col.resolve.ResolveReferences</code>: Resolves everything else.</li>
+</ul>
+<p>Both resolution stages have the same structure. At each node we receive a context that decides how we resolve that particular node. Before resolving any node, we fist resolve all of its children. This is because the type and well-formdness of children is more often relevant to the parent, than the well-formdness of the parent is to the children. The context is expanded upon by a node before passing it to its children. The recipe is thus as such:</p>
+<ol>
+<li><code>enterContext</code> decides how to expand the context from a node</li>
+<li><code>resolve</code> recureses into the node's children with the updated context</li>
+<li><code>resolveOne</code> is called for the node, which may assume the children are well-formed.</li>
+</ol>
+<p><code>ResolveTypes</code> is followed by its companion rewriter <code>LangTypesToCol</code>, which sets the resolved references in mutable state in stone. Dually the <code>ResolveReferences</code> resolver is followed by <code>LangSpecificToCol</code>.</p>
+<h2 id="from-parse-tree-to-col-tree"><a class="header" href="#from-parse-tree-to-col-tree">From parse tree to COL tree</a></h2>
+<p>VerCors has two ways of representing a text name:</p>
+<ul>
+<li>A node contains a <code>Ref</code> that is of type <code>UnresolvedRef</code>. This is appropriate for places where the name is exactly one label (as opposed to a fully qualified name like <code>java.lang.String</code>), and will clearly resolve to a category of declaration. This is unfortunately quite often not the case.</li>
+<li>A node remembers the text name temporarily, and contains mutable state to receive the result of resolution. An example of this is <code>JavaLocal</code>.</li>
+</ul>
+<p>This is an area of VerCors that should be refactored: there should be one clear way to represent an unresolved name.</p>
+<h2 id="unresolvedref"><a class="header" href="#unresolvedref"><code>UnresolvedRef</code></a></h2>
+<p>This class contains mutable state in its field <code>resolvedDecl</code>, which can be filled by calling <code>UnresolvedRef.resolve</code>. Most occurences of <code>Ref</code> have an entry in <code>ResolveReferences</code>, but it is not clear that there is always a sensible way to implement this.</p>
+<h2 id="referrable"><a class="header" href="#referrable"><code>Referrable</code></a></h2>
+<p>Any other situation should just remember the text name from the input in a node, and contain mutable state that receives the result of resolving it. By convention, this is a <code>var ref: Option[?] = None</code>. Other code like <code>check</code> and <code>t</code> may assume the <code>ref</code> is filled.</p>
+<p>Usually the resolution result points to something in the AST, in which case you should use <code>Referrable</code>. It can point to the following kinds of thing:</p>
+<ul>
+<li>Exactly one <code>Declaration</code>;</li>
+<li>A portion of a declaration, such as field #2 in the multi-declaration <code>int x, y, z;</code>;</li>
+<li>A reference to an intrinsic part of the language that cannot be directly parsed, such as cuda's <code>blockDim</code>;</li>
+<li>A reference to a VerCors-built-in concept, like the <code>.size</code> of a sequence;</li>
+<li>A reference to a construct that exists implicitly, such as Java's default constructor.</li>
+</ul>
+<p>It is a bit frustrating that all declarations are essentially duplicated under <code>Referrable</code>, but it does give us the flexibility to make names point to whatever we want.</p>
+<h2 id="from-col-tree-to-resolved-tree"><a class="header" href="#from-col-tree-to-resolved-tree">From COL tree to resolved tree</a></h2>
+<p>When using an <code>UnresolvedRef</code> or adding a <code>Option[Referrable]</code> variable, we should take care that an appropriate entry is added in <code>Resolve{References,Types}.resolveOne</code>. We split out the resolution by language (including the specification language), which usually derives an appropriate <code>Referrable</code> from the <code>{Type,Reference}ResolutionContext</code>. Note again that we are allowed to e.g. query the type of child nodes, which is very relevant in resolving e.g. instance methods.</p>
+<h2 id="from-resolved-tree-to-ref"><a class="header" href="#from-resolved-tree-to-ref">From resolved tree to <code>Ref</code></a></h2>
+<p>The companion rewriters <code>LangTypesToCol</code> and <code>LangSpecificToCol</code> translate resolved references into a <code>Ref</code> (that is not an <code>UnresolvedRef</code>). From then on references are defined only by pointing at the declaration it resolved. A consequence of this is that past the language-specific pass pointing to anything other than exactly one declaration as above is not possible.</p>
+<p>Note: the <code>LangSpecificToCol</code> pass has accumulated far too much logic. The ideal path to implement a feature in VerCors is that you design new concepts in the core of COL that you need, and figure out a straightforward way to map to it in <code>LangSpecificToCol</code>. The task of <code>LangSpecificToCol</code> is not to lower language features into low-level concepts immediately, and VerCors often benefits from well-designed features in the core of COL across front-ends.</p>
 
                     </main>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -33,7 +33,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -63,31 +63,38 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">1.</strong> Techical Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setup-workflow.html"><strong aria-hidden="true">1.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="setup-language.html"><strong aria-hidden="true">1.2.</strong> Language</a></li><li class="chapter-item expanded "><a href="setup-build-system.html"><strong aria-hidden="true">1.3.</strong> Build System</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> Libraries</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.1.</strong> ANTLR</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.2.</strong> Logback</div></li></ol></li></ol></li><li class="chapter-item expanded "><a href="col.html"><strong aria-hidden="true">2.</strong> Common Object Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="col-nodes.html"><strong aria-hidden="true">2.1.</strong> Nodes</a></li><li class="chapter-item expanded "><a href="col-ref.html"><strong aria-hidden="true">2.2.</strong> References</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.</strong> Origins</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Checking</div></li><li class="chapter-item expanded "><a href="col-coercion.html" class="active"><strong aria-hidden="true">2.5.</strong> Coercion</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> Pretty-Printing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.7.</strong> Comparing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.8.</strong> Serialization</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Resolution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Rewriting</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Dispatch</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> Generations</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Succesion</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> Blames</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Nested Rewriters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.6.</strong> Substitution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.7.</strong> RewriteHelper</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.8.</strong> RewriteBuilder</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Backend and Errors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Program Translation</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> Error Translation</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Utilites</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Caching</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Profiling and Progress</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> Importing</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">1.</strong> Techical Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setup-workflow.html"><strong aria-hidden="true">1.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="setup-language.html"><strong aria-hidden="true">1.2.</strong> Language</a></li><li class="chapter-item expanded "><a href="setup-build-system.html"><strong aria-hidden="true">1.3.</strong> Build System</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> Libraries</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.1.</strong> ANTLR</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.2.</strong> Logback</div></li></ol></li></ol></li><li class="chapter-item expanded "><a href="col.html"><strong aria-hidden="true">2.</strong> Common Object Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="col-nodes.html"><strong aria-hidden="true">2.1.</strong> Nodes</a></li><li class="chapter-item expanded "><a href="col-ref.html"><strong aria-hidden="true">2.2.</strong> References</a></li><li class="chapter-item expanded "><a href="col-origin.html"><strong aria-hidden="true">2.3.</strong> Origins</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Checking</div></li><li class="chapter-item expanded "><a href="col-coercion.html" class="active"><strong aria-hidden="true">2.5.</strong> Coercion</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> Pretty-Printing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.7.</strong> Comparing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.8.</strong> Serialization</div></li></ol></li><li class="chapter-item expanded "><a href="resolution.html"><strong aria-hidden="true">3.</strong> Resolution</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Rewriting</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Dispatch</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> Generations</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Succesion</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> Blames</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Nested Rewriters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.6.</strong> Substitution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.7.</strong> RewriteHelper</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.8.</strong> RewriteBuilder</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Backend and Errors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Program Translation</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> Error Translation</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Utilites</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Caching</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Profiling and Progress</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> Importing</div></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -118,9 +125,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -175,7 +182,7 @@
 </code></pre>
 <p>and the arguments of <code>Plus</code> may be integers or rationals:</p>
 <pre><code class="language-scala">case Plus(left, right) =&gt;
-	firstOk(e, s&quot;Expected both operands to be numeric, but got ${left.t} and ${right.t}.&quot;,
+	firstOk(e, s"Expected both operands to be numeric, but got ${left.t} and ${right.t}.",
 		Plus(int(left), int(right)),
 		Plus(rat(left), rat(right)),
 	)
@@ -187,7 +194,7 @@
 <p>All nodes that contain expressions should have their coercions defined in <code>CoercingRewriter</code>. If the expression should be in a simple type (class), you can use <code>coerce(expression : Expr[Pre], type : Type[Pre])</code>. Shorthands for several common types are defined, such as <code>rat</code>, <code>bool</code> and <code>int</code>.</p>
 <p>If your node can be interpreted in multiple ways, determined by the type of its arguments, you can use the <code>firstOk</code> helper to select the first set of coercions that suceed on the arguments. Only if all alternatives fail an error is raised.</p>
 <h2 id="transformations"><a class="header" href="#transformations">Transformations</a></h2>
-<p>It is occasionally useful to implement transformation along the description of a coercion. Coercions are described by the node family <code>Coercion</code>. For example, coercing a <code>seq&lt;int&gt;</code> into a <code>seq&lt;rational&gt;</code> is described by <code>CoerceMapSeq(CoerceIntRat(), TInt(), TRational())</code>. Rewriters that extend <code>CoercingRewriter</code> have access to this coercion object by overriding <code>applyCoercion</code>. </p>
+<p>It is occasionally useful to implement transformation along the description of a coercion. Coercions are described by the node family <code>Coercion</code>. For example, coercing a <code>seq&lt;int&gt;</code> into a <code>seq&lt;rational&gt;</code> is described by <code>CoerceMapSeq(CoerceIntRat(), TInt(), TRational())</code>. Rewriters that extend <code>CoercingRewriter</code> have access to this coercion object by overriding <code>applyCoercion</code>.</p>
 <p>One example of this behaviour is in the overloaded interpretation of <code>null</code>. In VerCors the array types are entirely separate from the class types. Thus, <code>null</code> can be coerced into either an array or a class type. In the rewriter that encodes arrays, <code>ImportArray</code>, we filter for usages of <code>null</code> for arrays by translating a <code>CoerceNullArray</code> coercion to the appropriate value for a null array.</p>
 <h2 id="safety"><a class="header" href="#safety">Safety</a></h2>
 <p>Note that very nearly all defined/permissible coercions are promoting coercions. That is, they only admit coercions when a value definitely fits into the target type of the coercion. This is defined programatically by defining <code>isPromoting</code> in <code>CoercionImpl</code>. Currently the only exception is rationals into <code>zfrac</code> into <code>frac</code>. We have not investigated yet whether it is a good idea to define more implicit coercions to represent situations like demoting a <code>uint64</code> into a <code>uint32</code> - perhaps they are better suited as explicit non-<code>ApplyCoercion</code> nodes at an early point. Failures in coercion are reported to the blame in <code>Program</code>, mostly because we have no other good place to put it.</p>
@@ -197,10 +204,13 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="col-ref.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="col-origin.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next prefetch" href="resolution.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -208,10 +218,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="col-ref.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="col-origin.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next prefetch" href="resolution.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>

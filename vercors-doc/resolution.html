@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Resolution - VerCors Development Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">1.</strong> Techical Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setup-workflow.html"><strong aria-hidden="true">1.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="setup-language.html"><strong aria-hidden="true">1.2.</strong> Language</a></li><li class="chapter-item expanded "><a href="setup-build-system.html"><strong aria-hidden="true">1.3.</strong> Build System</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> Libraries</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.1.</strong> ANTLR</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.2.</strong> Logback</div></li></ol></li></ol></li><li class="chapter-item expanded "><a href="col.html"><strong aria-hidden="true">2.</strong> Common Object Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="col-nodes.html"><strong aria-hidden="true">2.1.</strong> Nodes</a></li><li class="chapter-item expanded "><a href="col-ref.html"><strong aria-hidden="true">2.2.</strong> References</a></li><li class="chapter-item expanded "><a href="col-origin.html"><strong aria-hidden="true">2.3.</strong> Origins</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Checking</div></li><li class="chapter-item expanded "><a href="col-coercion.html"><strong aria-hidden="true">2.5.</strong> Coercion</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> Pretty-Printing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.7.</strong> Comparing</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.8.</strong> Serialization</div></li></ol></li><li class="chapter-item expanded "><a href="resolution.html" class="active"><strong aria-hidden="true">3.</strong> Resolution</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Rewriting</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Dispatch</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> Generations</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Succesion</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.4.</strong> Blames</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.5.</strong> Nested Rewriters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.6.</strong> Substitution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.7.</strong> RewriteHelper</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.8.</strong> RewriteBuilder</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Backend and Errors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Program Translation</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> Error Translation</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Utilites</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Caching</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Profiling and Progress</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.3.</strong> Importing</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">VerCors Development Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="resolution"><a class="header" href="#resolution">Resolution</a></h1>
+<p>Resolution is the process of assigning a meaning to a text name. Resolution occurs in two stages:</p>
+<ul>
+<li><code>vct.col.resolve.ResolveTypes</code>: Resolves the meaning of types, and loads any library types that are mentioned but not in the input. Declaration with a type can be important in resoving other references, such as field dereferences.</li>
+<li><code>vct.col.resolve.ResolveReferences</code>: Resolves everything else.</li>
+</ul>
+<p>Both resolution stages have the same structure. At each node we receive a context that decides how we resolve that particular node. Before resolving any node, we fist resolve all of its children. This is because the type and well-formdness of children is more often relevant to the parent, than the well-formdness of the parent is to the children. The context is expanded upon by a node before passing it to its children. The recipe is thus as such:</p>
+<ol>
+<li><code>enterContext</code> decides how to expand the context from a node</li>
+<li><code>resolve</code> recureses into the node's children with the updated context</li>
+<li><code>resolveOne</code> is called for the node, which may assume the children are well-formed.</li>
+</ol>
+<p><code>ResolveTypes</code> is followed by its companion rewriter <code>LangTypesToCol</code>, which sets the resolved references in mutable state in stone. Dually the <code>ResolveReferences</code> resolver is followed by <code>LangSpecificToCol</code>.</p>
+<h2 id="from-parse-tree-to-col-tree"><a class="header" href="#from-parse-tree-to-col-tree">From parse tree to COL tree</a></h2>
+<p>VerCors has two ways of representing a text name:</p>
+<ul>
+<li>A node contains a <code>Ref</code> that is of type <code>UnresolvedRef</code>. This is appropriate for places where the name is exactly one label (as opposed to a fully qualified name like <code>java.lang.String</code>), and will clearly resolve to a category of declaration. This is unfortunately quite often not the case.</li>
+<li>A node remembers the text name temporarily, and contains mutable state to receive the result of resolution. An example of this is <code>JavaLocal</code>.</li>
+</ul>
+<p>This is an area of VerCors that should be refactored: there should be one clear way to represent an unresolved name.</p>
+<h2 id="unresolvedref"><a class="header" href="#unresolvedref"><code>UnresolvedRef</code></a></h2>
+<p>This class contains mutable state in its field <code>resolvedDecl</code>, which can be filled by calling <code>UnresolvedRef.resolve</code>. Most occurences of <code>Ref</code> have an entry in <code>ResolveReferences</code>, but it is not clear that there is always a sensible way to implement this.</p>
+<h2 id="referrable"><a class="header" href="#referrable"><code>Referrable</code></a></h2>
+<p>Any other situation should just remember the text name from the input in a node, and contain mutable state that receives the result of resolving it. By convention, this is a <code>var ref: Option[?] = None</code>. Other code like <code>check</code> and <code>t</code> may assume the <code>ref</code> is filled.</p>
+<p>Usually the resolution result points to something in the AST, in which case you should use <code>Referrable</code>. It can point to the following kinds of thing:</p>
+<ul>
+<li>Exactly one <code>Declaration</code>;</li>
+<li>A portion of a declaration, such as field #2 in the multi-declaration <code>int x, y, z;</code>;</li>
+<li>A reference to an intrinsic part of the language that cannot be directly parsed, such as cuda's <code>blockDim</code>;</li>
+<li>A reference to a VerCors-built-in concept, like the <code>.size</code> of a sequence;</li>
+<li>A reference to a construct that exists implicitly, such as Java's default constructor.</li>
+</ul>
+<p>It is a bit frustrating that all declarations are essentially duplicated under <code>Referrable</code>, but it does give us the flexibility to make names point to whatever we want.</p>
+<h2 id="from-col-tree-to-resolved-tree"><a class="header" href="#from-col-tree-to-resolved-tree">From COL tree to resolved tree</a></h2>
+<p>When using an <code>UnresolvedRef</code> or adding a <code>Option[Referrable]</code> variable, we should take care that an appropriate entry is added in <code>Resolve{References,Types}.resolveOne</code>. We split out the resolution by language (including the specification language), which usually derives an appropriate <code>Referrable</code> from the <code>{Type,Reference}ResolutionContext</code>. Note again that we are allowed to e.g. query the type of child nodes, which is very relevant in resolving e.g. instance methods.</p>
+<h2 id="from-resolved-tree-to-ref"><a class="header" href="#from-resolved-tree-to-ref">From resolved tree to <code>Ref</code></a></h2>
+<p>The companion rewriters <code>LangTypesToCol</code> and <code>LangSpecificToCol</code> translate resolved references into a <code>Ref</code> (that is not an <code>UnresolvedRef</code>). From then on references are defined only by pointing at the declaration it resolved. A consequence of this is that past the language-specific pass pointing to anything other than exactly one declaration as above is not possible.</p>
+<p>Note: the <code>LangSpecificToCol</code> pass has accumulated far too much logic. The ideal path to implement a feature in VerCors is that you design new concepts in the core of COL that you need, and figure out a straightforward way to map to it in <code>LangSpecificToCol</code>. The task of <code>LangSpecificToCol</code> is not to lower language features into low-level concepts immediately, and VerCors often benefits from well-designed features in the core of COL across front-ends.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="col-coercion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="col-coercion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
