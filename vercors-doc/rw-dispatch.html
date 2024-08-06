@@ -176,6 +176,52 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="dispatch"><a class="header" href="#dispatch">Dispatch</a></h1>
+<p>A rewriter describes how a COL tree is transformed. The root of the tree is passed to one of the <code>dispatch</code> methods: each <code>dispatch</code> method decides what should happen next. By default we always recurse into the tree, querying <code>dispatch</code> for the child nodes of our current node. You might imagine that the default implementation of <code>dispatch</code> for a <code>Plus</code> node is structured like this:</p>
+<pre><code class="language-scala">def dispatch(e: Expr[Pre]): Expr[Post] =
+  e match {
+    case Plus(left, right) =&gt;
+      Plus(dispatch(left), dispatch(right))(e.o)
+
+    /* ... other alternatives ... */
+  }
+</code></pre>
+<h2 id="structural-transformations"><a class="header" href="#structural-transformations">Structural transformations</a></h2>
+<p>The idea is now that you override dispatch methods for the nodes you would like to rewrite. For example, we might want to make an optimization that simplifies away additions of <code>0</code>:</p>
+<pre><code class="language-scala">val ZERO = BigInt(0)
+
+override def dispatch(e: Expr[Pre]): Expr[Post] =
+  e match {
+    case Plus(IntegerValue(ZERO), e) =&gt; dispatch(e)
+    case Plus(e, IntegerValue(ZERO)) =&gt; dispatch(e)
+
+    case other =&gt; other.rewriteDefault()
+  }
+</code></pre>
+<p>A new concept here is <code>rewriteDefault</code>: it is the mechanism used to peel off one layer of a program tree and recurse into its children using dispatch. It is automatically generated for each node, here in <code>PlusRewrite</code>. It takes an implicit value of type <code>AbstractRewriter</code>, which is the rewriter used to call <code>dispatch</code> again. By default it picks the <code>implicit val rewriter</code> which is defined for each <code>AbstractRewriter</code>. Note that Scala requires that a match statement is complete. A default case as above also makes the match complete.</p>
+<p>A common mistake is to erroneously call <code>rewriteDefault</code> too often: when recursing into nodes yourself you should almost always call <code>dispatch</code>, which will decide to do with the sub-node.</p>
+<h2 id="transforming-declarations"><a class="header" href="#transforming-declarations">Transforming declarations</a></h2>
+<p>Declarations are special because it is not required that a declaration is transformed into a declaration. This is also represented in the signature of the <code>dispatch</code> method for <code>Declaration[_]</code>:</p>
+<pre><code class="language-scala">def dispatch(decl: Declaration[Pre]): Unit
+</code></pre>
+<p>Nevertheless declarations have to be placed in the tree, and references to declarations need to be rewritten. Both are arranged through an instance of the <code>Scopes</code> class — one for each kind of declaration. Rewriting references is tricky, so this is explained later on in the section on <a href="./rw-succession.html">succession</a>.</p>
+<p>A node that contains declaration, such as <code>Class[G](decls: Seq[ClassDeclaration[G]], ...)</code>, needs to come up with a new list of <code>ClassDeclaration[G]</code>. We first have to consider the appropriate <code>Scopes</code> instance: in this case <code>classDeclarations</code>. We call <code>classDeclaration.collect</code>, which pushes a collection buffer onto a stack. A lambda is passed to <code>collect</code> in which we can take any actions, chiefly to declare declarations of kind <code>ClassDeclaration</code>. By convention we call <code>dispatch</code> on all the <code>Pre</code>-state declarations that we are interested in, and (optionally) we can declare one or more other <code>ClassDeclaration</code>s we need to add. All this is also allowed to happen recursively: we can be in a statement somewhere in the class and still declare a helper method to the <code>classDeclarations</code> scope.</p>
+<p>Combining this information we can obtain the new declarations of a class as such:</p>
+<pre><code class="language-scala">val newDeclarations = classDeclarations.collect {
+  cls.decls.foreach(dispatch)
+}._1
+</code></pre>
+<p>Collect returns a tuple: a list of new declarations, and whatever the result of the lambda is (here: <code>Unit</code>). On the other side of the fence, the old class declarations are rewritten and declared to the scope. Reproducing the default behaviour for <code>ClassDeclaration</code>s might look like this, skipping over succession for the moment:</p>
+<pre><code class="language-scala">override def dispatch(decl: Declaration[Pre]): Unit =
+  decl match {
+    case decl: ClassDeclaration[Pre] =&gt;
+      classDeclarations.declare(decl.rewriteDefault())
+
+    case other =&gt;
+      allScopes.anyDeclare(other.rewriteDefault())
+  }
+</code></pre>
+<p>Our friend <code>rewriteDefault</code> makes another appearence, which peels off the <code>ClassDeclaration</code> constructor, and recurses into its components. In the case that a <code>ClassDeclaration</code> contains further declarations, it will call <code>collect</code> again in a similar way. For example, an <code>InstanceMethod</code> is a <code>ClassDeclaration</code> and contains declarations of kind <code>Variable</code> for its arguments.</p>
+<p>After rewriting the declaration fully by opting to rewrite it in a one-to-one manner, it is declared to the buffer of <code>ClassDeclaration</code>s that we are currently collecting.</p>
 
                     </main>
 
