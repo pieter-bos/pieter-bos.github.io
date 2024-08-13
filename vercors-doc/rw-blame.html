@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Blames - VerCors Development Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Quick reference guide</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.1.</strong> Adding a Language</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.2.</strong> New specifications</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.3.</strong> New modes</div></li></ol></li><li class="chapter-item expanded "><a href="setup.html"><strong aria-hidden="true">2.</strong> Techical Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setup-workflow.html"><strong aria-hidden="true">2.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="setup-language.html"><strong aria-hidden="true">2.2.</strong> Language</a></li><li class="chapter-item expanded "><a href="setup-build-system.html"><strong aria-hidden="true">2.3.</strong> Build System</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Libraries</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.1.</strong> ANTLR</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.2.</strong> Logback</div></li></ol></li></ol></li><li class="chapter-item expanded "><a href="col.html"><strong aria-hidden="true">3.</strong> Common Object Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="col-nodes.html"><strong aria-hidden="true">3.1.</strong> Nodes</a></li><li class="chapter-item expanded "><a href="col-ref.html"><strong aria-hidden="true">3.2.</strong> References</a></li><li class="chapter-item expanded "><a href="col-origin.html"><strong aria-hidden="true">3.3.</strong> Origins</a></li><li class="chapter-item expanded "><a href="col-check.html"><strong aria-hidden="true">3.4.</strong> Checking</a></li><li class="chapter-item expanded "><a href="col-coercion.html"><strong aria-hidden="true">3.5.</strong> Coercion</a></li><li class="chapter-item expanded "><a href="col-pp.html"><strong aria-hidden="true">3.6.</strong> Pretty-Printing</a></li><li class="chapter-item expanded "><a href="col-compare.html"><strong aria-hidden="true">3.7.</strong> Comparing</a></li><li class="chapter-item expanded "><a href="col-serialize.html"><strong aria-hidden="true">3.8.</strong> Serialization</a></li></ol></li><li class="chapter-item expanded "><a href="resolution.html"><strong aria-hidden="true">4.</strong> Resolution</a></li><li class="chapter-item expanded "><a href="rw.html"><strong aria-hidden="true">5.</strong> Rewriting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rw-outline.html"><strong aria-hidden="true">5.1.</strong> Outline</a></li><li class="chapter-item expanded "><a href="rw-dispatch.html"><strong aria-hidden="true">5.2.</strong> Dispatch</a></li><li class="chapter-item expanded "><a href="rw-generation.html"><strong aria-hidden="true">5.3.</strong> Generations</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.4.</strong> Succesion</div></li><li class="chapter-item expanded "><a href="rw-blame.html" class="active"><strong aria-hidden="true">5.5.</strong> Blames</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.6.</strong> Nested Rewriters</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.7.</strong> Substitution</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.8.</strong> RewriteHelper</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.9.</strong> RewriteBuilder</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Backend and Errors</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Program Translation</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Error Translation</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Utilites</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Caching</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> Profiling and Progress</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> Importing</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">VerCors Development Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="blames"><a class="header" href="#blames">Blames</a></h1>
+<p>One of the core tenets of VerCors is that technical verification errors are translated as precisely as possible to a problem in the input to the tool.</p>
+<p>We submit a large query with many verification goals to our backend, Viper, and receive back a list of errors. This list is translated backwards to relate to the input through the blame system: each node that induces a verification goal must explain what to do with the error. The most common way to explain away an error is to just blame somebody else! Each rewriter gets an input tree, along with blames for each goal-inducing node. On the output side, we have to provide the blame instead, but for simpler rewrites there usually is an apparent blame we can use from the input side.</p>
+<h2 id="blaming-somebody-else"><a class="header" href="#blaming-somebody-else">Blaming somebody else</a></h2>
+<p>If the type of error on the input and output side are the same, we can simply place the blame in the output tree without rewriting it — blames are special in this sense. A slight complication occurs when the type does not match. For example, we might be tranlating a well-formedness condition like <code>Blame[MapKeyError]</code> to a function precondition blame of type <code>Blame[InvocationFailure]</code>.</p>
+<p>In this case we have to indicate how the error is translated:</p>
+<pre><code class="language-scala">case class MapKeyPreconditionFailed(get: MapGet[_]) extends Blame[InvocationFailure] {
+  override def blame(error: InvocationFailure): Unit =
+    error match {
+      case PreconditionFailed(_, _, _) =&gt;
+        get.blame.blame(MapKeyError(get))
+      case ContextEverywhereFailedInPre(_, _) =&gt;
+        PanicBlame("This rewriter does not generate context_everywhere clauses for map get functions")
+          .blame(error)
+    }
+}
+</code></pre>
+<p>If the precondition of the function fails in some position, we translate the error to be the original well-formedness conditions on a map get operation.</p>
+<h2 id="blaming-the-system"><a class="header" href="#blaming-the-system">Blaming the system</a></h2>
+<p>We declare that it is impossible that <code>ContextEverywhereFailedInPre</code> occurs, because we guarantee in the rewriter that the <code>context_everywhere</code> clause of the function we generate is <code>true</code>. It is important that we do not just silence the error.</p>
+<p>Note: Although this style of blame transformation works, it is too easy to silence errors this way. In fact: this snippet would still compile if the <code>PanicBlame</code> line was omitted entirely. We should consider making blames functional: it should return a (list of) errors instead of invoking a further blame explicitly.</p>
+<h2 id="blaming-everybody-else"><a class="header" href="#blaming-everybody-else">Blaming everybody else</a></h2>
+<p>For some positions where a contract is specified, you can also depend on what part of the contract is false. You can find these positions through the fact that they contain an <code>AccountedPredicate[G]</code> instead of an <code>Expr[G]</code>. They additionally report a sequence of <code>AccountedDirection</code> in the appropriate failure, which you can match on in the blame. In fact: you need to be careful to ensure that when the shape of an <code>AccountedPredicate</code> changes, the matching <code>blame</code> needs to also account for the changed shape.</p>
+<p>Typically a contract expression is added to the start or end of an accounted predicate. For example, <code>context_everywhere</code> is transated to be a regular pre- and postcondition as such:</p>
+<pre><code class="language-scala">contract.rewrite(
+  contextEverywhere = tt,
+  requires = SplitAccountedPredicate(
+    UnitAccountedPredicate(freshInvariants()),
+    dispatch(contract.requires),
+  ),
+  ensures = SplitAccountedPredicate(
+    UnitAccountedPredicate(freshInvariants()),
+    dispatch(contract.ensures),
+  ),
+)
+</code></pre>
+<p>Here the <code>context_everywhere</code> specifications are prepended, so we have to call the original blame when the accounted predicate path starts with <code>FailRight</code>:</p>
+<pre><code class="language-scala">inv.rewrite(blame =
+  PreBlameSplit
+    .left(ContextEverywherePreconditionFailed(inv), inv.blame)
+)
+</code></pre>
+<p>Note that although there is only a few places where <code>AccountedPredicate</code> is used, this is really only for convenience: there is no strong reason to keep e.g. loop invariants an <code>Expr</code> other than convenience.</p>
+<h2 id="blaming-the-user"><a class="header" href="#blaming-the-user">Blaming the user</a></h2>
+<p>So far we have looked at blames that blame other blames, but they do come from somewhere. All the transformations of parse trees to COL trees keep around a <code>blameProvider</code>, which explains how to create the initial blame. Note: although the constructed blame can optionally depend on the position, this is not usually used to determine the location at the source. Instead, the origin of the relevant node in the <code>VerificationFailure</code> is typically used. This design is a bit shaky and should be reviewed.</p>
+<p>This process of constructing an initial blame is <strong>only</strong> done in the parse tree stage: from then on new blames are not created. The typical way to provide blame is to pass a <code>ConstantBlameProvider</code> that gives out a constant <code>BlameCollector</code> for every blame: a facility that simply stores a list of <code>VerificationFailure</code>s in a buffer.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="rw-generation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="rw-generation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
